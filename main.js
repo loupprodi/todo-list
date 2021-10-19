@@ -1,3 +1,5 @@
+const listArray = [];
+const novaTarefa = document.querySelector('#btn');
 const criarTarefa = (evento) => {
   evento.preventDefault();
   const lista = document.querySelector('#list');
@@ -14,10 +16,14 @@ const criarTarefa = (evento) => {
   tarefa.appendChild(BotaoDeleta());
 
   lista.appendChild(tarefa);
+  listArray.push(valor);
+  localStorage.setItem('tarefas', listArray);
+  localStorage.getItem('tarefas')
+    ? localStorage.getItem('tarefas').split(',')
+    : [];
+
   input.value = '';
 };
-
-const novaTarefa = document.querySelector('#btn');
 
 novaTarefa.addEventListener('click', criarTarefa);
 
@@ -58,7 +64,6 @@ const deletarTarefa = (evento) => {
   return botaoDeleta;
 };
 
-localStorage.setItem('tarefas', listArr.join(','));
 //adicionar storage
 
 // const salvarStorage = (evento) => {
